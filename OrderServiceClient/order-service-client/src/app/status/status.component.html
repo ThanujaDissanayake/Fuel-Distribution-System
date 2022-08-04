@@ -1,0 +1,22 @@
+<form #searchform="ngForm"  class="form-inline"  >
+    <input class="form-control mr-sm-2" type="text" placeholder="Reference Order ID" aria-label="Search" name="referenceid"  #referenceid>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="search(referenceid.value)">Search</button>
+</form>
+
+<div class="table-responsive">
+    <table class="table" *ngIf = "isShow">
+        <thead>
+            <tr>
+                <th>Schedued Date</th>
+                <th>Your Order ID</th>
+                <th>Type</th>
+                <th>Capacity</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        
+        </table>
+
+
+</div>
