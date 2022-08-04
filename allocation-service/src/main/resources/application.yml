@@ -1,0 +1,24 @@
+server:
+  port: 8081
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: stock
+      auto-offset-reset: earliest
+      key-deserializer:  org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: com.dissanayake.fuel.*
+    topic:
+      name: order_topic
+  datasource:
+    url: jdbc:mysql://localhost:3306/AllocationDB?createDatabaseIfNotExist=true
+    username: root
+    password: 1234
+    river-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: none
