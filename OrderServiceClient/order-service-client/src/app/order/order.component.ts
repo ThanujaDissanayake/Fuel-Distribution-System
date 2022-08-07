@@ -19,7 +19,7 @@ export class OrderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  order=new Order('','','');
+  order=new Order('','',0);
 
  submit(){
     //console.log(this.order);
@@ -27,7 +27,6 @@ export class OrderComponent implements OnInit {
       data=>console.log('Success !',data),
       error=>console.log('Error !',error)
     )
-       
 
   }
 

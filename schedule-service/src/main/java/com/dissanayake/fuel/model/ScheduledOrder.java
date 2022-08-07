@@ -8,6 +8,7 @@ import java.util.Date;
 public class ScheduledOrder {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String orderId;
     private String stationName;

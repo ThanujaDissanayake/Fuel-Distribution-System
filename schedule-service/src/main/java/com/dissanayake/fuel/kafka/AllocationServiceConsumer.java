@@ -8,12 +8,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
-import java.util.Optional;
 
+@Service
 public class AllocationServiceConsumer {
 
     private static final Logger LOGGER= LoggerFactory.getLogger(AllocationServiceConsumer.class);
@@ -26,24 +27,24 @@ public class AllocationServiceConsumer {
         this.scheduleRepository = scheduleRepository;
     }
 
-    @KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "${spring.kafka.consumer.group-id}")
+    @KafkaListener(topics = "stock-order_topic", groupId = "${spring.kafka.consumer.group-id}")
     public void scheduleOrder(OrderEvent orderEvent){
         LOGGER.info(String.format("Got an Confirmed Order to Schedule => %s",orderEvent.toString()));
 
         //Set schedule date for the confirmed order
-        if(orderEvent.getStatus()=="CONFIRMED"){
+        if(orderEvent.getStatus().equals("ACCEPT")){
             orderEvent.setScheduledDate(generateDate());
             scheduleRepository.save(new ScheduledOrder(
-                    orderEvent.getOrder().getOrderId(),
-                    orderEvent.getOrder().getStationName(),
-                    orderEvent.getOrder().getCapacity(),
-                    orderEvent.getOrder().getType(),
+                    orderEvent.getOrderId(),
+                    orderEvent.getStationName(),
+                    orderEvent.getCapacity(),
+                    orderEvent.getType(),
                     orderEvent.getStatus(),
                     orderEvent.getScheduledDate()
             ));
-        }
 
-        kafkaTemplate.send("schedule-order_topic",orderEvent.getOrder().getOrderId(),orderEvent);
+            kafkaTemplate.send("schedule-order_topic",orderEvent.getOrderId(),orderEvent);
+        }
         LOGGER.info(String.format("Order is Scheduled on => %s",orderEvent.getScheduledDate()));
     }
 

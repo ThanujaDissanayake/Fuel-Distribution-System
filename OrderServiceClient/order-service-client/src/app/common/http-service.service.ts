@@ -17,8 +17,21 @@ export class HttpServiceService {
   }*/
 
  _searchUrl='http://localhost:8080/search';
+ _scheduledAllUrl='http://localhost:8084/scheduledOrders/allOrders';
+ _dispatchUrl='http://localhost:8084/scheduledOrders/dispatch';
+
+
   getOrderStatus(referenceid:string):Observable<any>{
     let param=new HttpParams().set('orderId',referenceid);
     return this.http.get(this._searchUrl,{params:param});
   }
+
+  getScheduledAll():Observable<any>{
+      return this.http.get<any>(this._scheduledAllUrl);
+  }
+
+  public dispatch(order:ScheduledOrder){
+    return this.http.post<any>(this._dispatchUrl,order);
+}
+
 }

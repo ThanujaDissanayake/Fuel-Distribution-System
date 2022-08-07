@@ -8,10 +8,10 @@ import { Observable, throwError } from 'rxjs';
 })
 export class OrderService {
 
-  _url='';
+  _url='http://localhost:8083/home/orders';
   constructor(private _http:HttpClient) { }
 
-  placeOrder(order:Order){
+  public placeOrder(order:Order){
       return this._http.post<any>(this._url,order);
   }
 }

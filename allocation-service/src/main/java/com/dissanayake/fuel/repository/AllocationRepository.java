@@ -1,6 +1,6 @@
 package com.dissanayake.fuel.repository;
 
-import com.dissanayake.fuel.model
+import com.dissanayake.fuel.model.FuelStock;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

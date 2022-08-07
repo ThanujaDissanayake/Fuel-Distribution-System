@@ -10,10 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.config.StreamsBuilderFactoryBean;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +33,7 @@ public class DispatchController {
         this.streamFactory = streamFactory;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200/")
     @RequestMapping(value = "/allOrders",method = RequestMethod.GET)
     public List<OrderEvent> allOrders(){
         List<OrderEvent> orders=new ArrayList<>();
@@ -52,6 +50,7 @@ public class DispatchController {
         return orders;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200/")
     @RequestMapping(value = "/dispatch",method = RequestMethod.POST)
     public void dispatchOrder(@RequestBody OrderEvent disOrder){
         if(disOrder.getStatus().equals("DISPATCHED")){

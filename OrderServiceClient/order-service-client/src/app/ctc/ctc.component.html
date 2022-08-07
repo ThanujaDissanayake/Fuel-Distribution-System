@@ -1,0 +1,29 @@
+<div>
+    <button class="btn btn-primary">Daily Report</button>
+</div>
+<div class="table-responsive">
+    <table class="table" >
+        <thead>
+            <tr>
+                <th>Scheduled Date</th>
+                <th>Order ID</th>
+                <th>Station Name</th>
+                <th>Fuel Type</th>
+                <th>Capacity</th>
+                <th> </th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr *ngFor="let order of scheduledOrders">
+                <td>{{order.scheduledDate | date}}</td>
+                <td>{{order.orderId}}</td>
+                <td>{{order.stationName}}</td>
+                <td>{{order.type}}</td>
+                <td>{{order.capacity}}</td>
+                <td><button class="btn btn-primary" (click)="dispatchOrder(order)">Dispatch</button> </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
