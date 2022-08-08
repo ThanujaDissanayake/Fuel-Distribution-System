@@ -1,6 +1,8 @@
 <form #searchform="ngForm"  class="form-inline"  >
     <input class="form-control mr-sm-2" type="text" placeholder="Reference Order ID" aria-label="Search" name="referenceid"  #referenceid>
-    <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="search(referenceid.value)">Search</button>
+    <div>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="search(referenceid.value)">Search</button>
+    </div>
 </form>
 
 <div class="table-responsive">
@@ -14,5 +16,14 @@
                 <th>Status</th>
             </tr>
         </thead>
+        <tbody>
+            <tr *ngFor="let order of sheduledOrder">
+                <td>{{order.scheduledDate | date}}</td>
+                <td>{{order.orderId}}</td>
+                <td>{{order.type}}</td>
+                <td>{{order.capacity}}</td>
+                <td>{{order.status}}</td>
+            </tr>
+        </tbody>
     </table>
 </div>

@@ -11,6 +11,7 @@ import { OrderComponent } from './order/order.component';
 import { StatusComponent } from './status/status.component';
 import { CtcComponent } from './ctc/ctc.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CustomerComponent } from './customer/customer.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     OrderComponent,
     StatusComponent,
     CtcComponent,
-    DispatchConfirmComponent
+    DispatchConfirmComponent,
+    CustomerComponent
   ],
   entryComponents:[DispatchConfirmComponent],
   imports: [

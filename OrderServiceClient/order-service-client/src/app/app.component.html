@@ -1,32 +1,20 @@
-<nav class="navbar navbar-dark bg-dark justify-content-between">
-  <a class="navbar-brand">Fuel Distribution System</a>
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="#" routerLink="ctc">CTC</a>
-    </li>
-  </ul>
-</nav>
-<div class="row justify-content-around">
-  <div class="col-4">
-    <div class="card">
-      <div class="card-header">
-        Place Your Order
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card bg-dark my-5">
+        <div class="card-body">
+          <h2 class="card-title text-center text-white">Fuel Distribution System</h2>
+          <ul class="text-center list-inline py-3">
+            <li class="list-inline-item">
+              <a routerLink="customer" class="btn btn-info">Fuel Station</a>
+            </li>
+            <li class="list-inline-item">
+              <a routerLink="ctc" class="btn btn-info">CTC</a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="card-body">
-        <app-order></app-order>
-      </div>
-    </div>
-  </div>
- 
-  <div class="col-4">
-    <div class="card">
-      <div class="card-header">
-        Check Order Status
-      </div>
-      <div class="card-body">
-       <app-status></app-status>
-      </div>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
-<router-outlet></router-outlet>
