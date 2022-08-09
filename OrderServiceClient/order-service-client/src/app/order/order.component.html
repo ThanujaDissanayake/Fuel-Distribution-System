@@ -1,15 +1,23 @@
+<div class="card-body">
+  <div *ngIf="alert" class="alert alert-success" role="alert">
+      <strong>Success !</strong> Your Order has been submitted successfuly.
+      <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
 <div class="h-100 d-flex align-items-center justify-content-center">
 
-  <form #orderform="ngForm" (ngSubmit)="submit()" >
+  <form #orderform="ngForm" (ngSubmit)=" submit(orderform)" novalidate>
 
     <div class="form-group">
       <label for="Sname">Station name</label>
-      <input type="text" class="form-control" name="stationName" placeholder="Enter station name"  [(ngModel)]="order.stationName"/>
+      <input type="text" class="form-control" name="stationName" placeholder="Enter station name"  [(ngModel)]="order.stationName" #name="ngModel" required/>
     </div>
 
     <div class="form-group">
       <label for="Type">Type</label>
-      <select class="form-control" name="type"  [(ngModel)]="order.type">
+      <select class="form-control" name="type"  [(ngModel)]="order.type" #type="ngModel" required>
           <option>92</option>
           <option>95</option>
           <option>Super Diesel</option>
@@ -22,13 +30,13 @@
     </div>
       <div class="form-group">
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" [(ngModel)]="order.capacity"  name="capacity" value="33000">
+            <input class="form-check-input" type="radio" [(ngModel)]="order.capacity"  name="capacity" value="33000" #cap="ngModel" required>
             <label class="form-check-label">
             33000
             </label>
         </div>
         <div class="form-check form-check-inline"> 
-          <input class="form-check-input" type="radio" [(ngModel)]="order.capacity"  name="capacity" value="66000">
+          <input class="form-check-input" type="radio" [(ngModel)]="order.capacity"  name="capacity" value="66000" required>
           <label class="form-check-label">
            66000
           </label>
@@ -37,4 +45,5 @@
 
     <button class="btn btn-primary" type="submit">Place Order</button>
   </form>
+</div>
 </div>

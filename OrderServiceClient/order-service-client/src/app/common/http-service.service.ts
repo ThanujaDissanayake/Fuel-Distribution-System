@@ -9,24 +9,14 @@ import { ScheduledOrder } from './scheduled-order.model';
 })
 export class HttpServiceService {
 
-  //
   constructor(private http:HttpClient) { }
-
- /* placeOrder(Order:order){
-    return this.http.post<Order>(this._url,order);
-  }*/
 
  _searchUrl='http://localhost:8083/home/allOrders';
  _scheduledAllUrl='http://localhost:8084/scheduledOrders/allOrders';
  _dispatchUrl='http://localhost:8084/scheduledOrders/dispatch';
  
-
-
   getOrderStatus():Observable<any>{
-    /*let param=new HttpParams().set('orderId',referenceid);
-    console.log('Called Search')*/
     return this.http.get<any>(this._searchUrl);
-    
   }
 
   getScheduledAll():Observable<any>{

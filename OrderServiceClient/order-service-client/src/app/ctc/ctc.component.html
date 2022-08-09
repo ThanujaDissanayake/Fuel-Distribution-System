@@ -1,7 +1,4 @@
 <div class="container">
-<div>
-    <button class="btn btn-primary">Daily Report</button>
-</div>
 <div class="table-responsive">
     <table class="table" >
         <thead>
@@ -16,13 +13,13 @@
         </thead>
         
         <tbody>
-            <tr *ngFor="let order of scheduledOrders">
+            <tr *ngFor="let order of scheduledOrders" >
                 <td>{{order.scheduledDate | date}}</td>
                 <td>{{order.orderId}}</td>
                 <td>{{order.stationName}}</td>
                 <td>{{order.type}}</td>
                 <td>{{order.capacity}}</td>
-                <td><button class="btn btn-primary" (click)="dispatchOrder(order)">Dispatch</button> </td>
+                <td ><button class="btn btn-primary" (click)="dispatchOrder(order)">Dispatch</button> </td>
             </tr>
         </tbody>
     </table>

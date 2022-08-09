@@ -1,3 +1,4 @@
+import { DialogService } from './../common/dialog.service';
 import { data } from 'jquery';
 import { ScheduledOrder } from './../common/scheduled-order.model';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +13,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class StatusComponent implements OnInit {
 
-  constructor(private httpService: HttpServiceService) { }
+  constructor( private httpService: HttpServiceService) { }
 
   subscriber!:Subscription;
   sheduledOrder!:ScheduledOrder[] ;
@@ -22,17 +23,9 @@ export class StatusComponent implements OnInit {
   getSheduedOrder?:ScheduledOrder;
   e:ScheduledOrder=new ScheduledOrder('','','','','',2);
 
+  ngOnInit(): void { 
 
-
-  ngOnInit(): void {  
-   /* this.subscriber=this.httpService.getOrderStatus().subscribe({
-      next:data=>{
-        this.sheduledOrder=data;
-      }
-    })*/
   }
- 
-
  
   search(referenceid:string) {
     this.referenceid=referenceid;
@@ -43,20 +36,9 @@ export class StatusComponent implements OnInit {
       this.getSheduedOrder=this.sheduledOrder.find(e=>e.orderId==this.referenceid);
       if(this.getSheduedOrder!== undefined){
         this.isShow=true;
-        
-  
       }
       console.log(this.getSheduedOrder);
     }
    )
   }
-
-/* filterorders(referenceid:string) {
-    //this.isShow=true;
-  this.referenceid=referenceid;
-  this.search()
-  this.getSheduedOrder =this.sheduledOrder.find(e=>e.orderId==referenceid);
-  console.log('filetr called', this.getSheduedOrder);
-  }*/
-
 }

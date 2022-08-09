@@ -3,7 +3,9 @@ import { data, error } from 'jquery';
 import { HttpServiceService } from './../common/http-service.service';
 import { ScheduledOrder } from './../common/scheduled-order.model';
 import { Component, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { ConfirmationService } from 'primeng/api';
+import { DialogService } from '../common/dialog.service';
 
 @Component({
   selector: 'app-ctc',
@@ -13,9 +15,8 @@ import {MatDialog} from '@angular/material/dialog';
 export class CtcComponent implements OnInit {
 
   scheduledOrders!:ScheduledOrder[];
-  isDispathed:boolean=false;
-
-
+  isDispathed:boolean=true;
+  
   constructor(private httpService:HttpServiceService) { }
 
   ngOnInit() {
@@ -26,10 +27,15 @@ export class CtcComponent implements OnInit {
 
   dispatchOrder(order:any){
     order.status='DISPATCHED';
+    this.isDispathed=false;
     this.httpService.dispatch(order).subscribe(
       data=>console.log('Success !',data),
       error=>console.log('Error !',error)
     )
+    const index=this.scheduledOrders.indexOf(order);
+    if (index !== -1) {
+      this.scheduledOrders.splice(index, 1);
+  } 
   }
 
 }
